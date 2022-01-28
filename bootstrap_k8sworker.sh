@@ -14,3 +14,9 @@
 # Set root password
 echo -e "kubeadmin\nkubeadmin" | passwd root >/dev/null 2>&1
 echo "export TERM=xterm" >> /etc/bash.bashrc
+
+#
+echo "Join node to Kubernetes Cluster"
+apt install -qq -y sshpass >/dev/null 2>&1
+sshpass -p "kubeadmin" scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no k8smaster.example.com:/joincluster.sh /joincluster.sh 2>/dev/null
+bash /joincluster.sh >/dev/null 2>&1
