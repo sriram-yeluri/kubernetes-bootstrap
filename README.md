@@ -22,7 +22,7 @@ As you all aware, kubernetes deprecated docker in favour of `Container Runtime I
 Provisioning of the kubernetes cluster can be done with a single `vagrant up` command. This will take approximately 15 to 20 mins depending on the available resources on your host machine.
 
 * `vagrant up` : this will provision the k8s cluster
-* `vagrant halt` : this will save the state and stop the VMs
+* `vagrant suspend` : this will save the state and stop the VMs
 * `vagrant resume` : this will start the VMs from previous state.
 
 ## copy config file from vagrant box to host machine
