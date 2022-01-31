@@ -70,6 +70,7 @@ echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 sudo systemctl reload sshd
 
 # Update /etc/hosts file
+# If you increase the node count, then add the new entries to this list
 sudo cat >>/etc/hosts<<EOF
 192.168.56.10   k8smaster.example.com     k8s-master
 192.168.56.11   node-1.example.com    node-1

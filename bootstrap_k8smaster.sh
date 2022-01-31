@@ -9,7 +9,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 # Update apt package index, install kubelet, kubeadm and kubectl, and pin their version
 echo "[ * ] Update apt package index, install kubelet, kubeadm and kubectl, and pin their version"
 sudo apt-get update > /dev/null 2>&1
-sudo apt-get install -y kubelet kubeadm kubectl > /dev/null 2>&1
+sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl > /dev/null 2>&1
 
 # Set root password
@@ -29,9 +29,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # Install calico pod network
-kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
-# kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.18/manifests/calico.yaml >/dev/null 2>&1
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 # Generate kubeadm join token 
 kubeadm token create --print-join-command > /joincluster.sh 2>/dev/null
-

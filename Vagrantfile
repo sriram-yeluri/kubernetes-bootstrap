@@ -1,5 +1,12 @@
-# IMAGE_NAME = "bento/ubuntu-21.10"
+
+# vagrant file to provision VMs for bootstrapping the kubernetes cluster
+# Author: sriram yeluri
+# Note: 
+#   This is designed for local setup and not for production usage.
+
 IMAGE_NAME = "bento/ubuntu-20.04"
+
+# How many worker nodes do you need ? 
 N = 2
 
 Vagrant.configure("2") do |config|
@@ -20,7 +27,7 @@ Vagrant.configure("2") do |config|
         master.vm.provision "shell", path: "bootstrap_k8smaster.sh"
     end
 
-    # Provision WorkerNode
+    # Provision WorkerNodes based on the count=N
     (1..N).each do |i|
         config.vm.define "node-#{i}" do |node|
             node.vm.box = IMAGE_NAME
